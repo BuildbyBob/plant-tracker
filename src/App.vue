@@ -8,6 +8,10 @@ function addPlant() {
   plants.value.push(plantName.value);
   plantName.value = "";
 }
+
+function removePlant(index) {
+  plants.value.splice(index, 1);
+}
 </script>
 
 <template>
@@ -15,6 +19,9 @@ function addPlant() {
   <input v-model="plantName" placeholder="Enter plant name" />
   <button @click="addPlant()">Add plant</button>
   <ul>
-    <li v-for="plant in plants" :key="plant">{{ plant }}</li>
+    <li v-for="(plant, index) in plants" :key="plant">
+      {{ plant }}
+      <button @click="removePlant(index)">x</button>
+    </li>
   </ul>
 </template>
