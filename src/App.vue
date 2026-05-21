@@ -7,10 +7,17 @@ const plants = ref([]);
 function addPlant() {
   plants.value.push(plantName.value);
   plantName.value = "";
+  localStorage.setItem("plants", JSON.stringify(plants.value));
 }
 
 function removePlant(index) {
   plants.value.splice(index, 1);
+  localStorage.setItem("plants", JSON.stringify(plants.value));
+}
+
+const saved = localStorage.getItem("plants");
+if (saved) {
+  plants.value = JSON.parse(saved);
 }
 </script>
 
